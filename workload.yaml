@@ -1,0 +1,20 @@
+apiVersion: openchoreo.dev/v1alpha1
+
+metadata:
+  name: doclet-document-svc
+
+endpoints:
+  - name: rest-api
+    port: 8080
+    type: HTTP
+    schemaFile: openapi.yaml
+
+dependencies:
+  resources: 
+    - ref: ndoclet-nats
+      envBindings:                 
+        url: DOCLET_NATS_URL
+    - ref: ndoclet-postgres-terraform
+      envBindings:
+        url: DOCLET_DATABASE_URL
+        
